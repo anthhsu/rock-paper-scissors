@@ -29,7 +29,11 @@ function printInvalid(player) {
 }
 
 function playRound(player, computer) {
-    let playerFormatted = ""
+    if (player == null) {
+        printInvalid("null");
+        return;
+    }
+    let playerFormatted = "";
     let playerLower = player.toLowerCase();
     switch (playerLower) {
         case "rock":
@@ -86,6 +90,12 @@ function playRound(player, computer) {
     }
 }
 
-const playerChoice = "";
-const computerChoice = getComputerChoice();
-playRound(playerChoice, computerChoice);
+function game() {    
+    for (let i = 0; i < 5; i++) {
+        const playerChoice = prompt();
+        const computerChoice = getComputerChoice();
+        playRound(playerChoice, computerChoice);
+    }
+}
+
+game();
