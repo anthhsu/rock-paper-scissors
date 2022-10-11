@@ -2,10 +2,33 @@ const btnRock = document.getElementById("btnRock");
 const btnPaper = document.getElementById("btnPaper");
 const btnScissors = document.getElementById("btnScissors");
 const results = document.getElementById("results");
+const playerScoreText = document.getElementById("playerScore");
+const computerScoreText = document.getElementById("computerScore");
+var playerScore = 0;
+var computerScore = 0;
 
 btnRock.addEventListener('click', () => playRound("Rock", getComputerChoice()));
 btnPaper.addEventListener('click', () => playRound("Paper", getComputerChoice()));
 btnScissors.addEventListener('click', () => playRound("Scissors", getComputerChoice()));
+
+refresh();
+
+function refresh() {
+    if (playerScore < 5 && computerScore < 5) {
+        playerScoreText.innerText = `Player Score: ${playerScore}`;
+        computerScoreText.innerText = `Computer Score: ${computerScore}`;
+    } else { 
+        if (playerScore >= 5) {
+            playerScoreText.innerText = "Player Wins!";
+            computerScoreText.innerText = "";
+        } else {
+            playerScoreText.innerText = "Computer Wins!";
+            computerScoreText.innerText = "";
+        }
+        playerScore = 0;
+        computerScore = 0;
+    }
+}
 
 function getComputerChoice() {
     const rng = Math.ceil(Math.random() * 3);
@@ -23,10 +46,12 @@ function getComputerChoice() {
 
 function printWinner(player, computer) {
     results.innerText = `You win! ${player} beats ${computer}!`;
+    playerScore += 1;
 }
 
 function printLoser(player, computer) {
     results.innerText = `You lose! ${computer} beats ${player}!`;
+    computerScore += 1;
 }
 
 function printTie(player, computer) {
@@ -97,4 +122,6 @@ function playRound(player, computer) {
             printInvalid(player);
             break;
     }
+
+    refresh();
 }
