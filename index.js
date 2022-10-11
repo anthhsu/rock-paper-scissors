@@ -90,12 +90,20 @@ function playRound(player, computer) {
     }
 }
 
-function game() {    
-    for (let i = 0; i < 5; i++) {
-        const playerChoice = prompt();
-        const computerChoice = getComputerChoice();
-        playRound(playerChoice, computerChoice);
-    }
+function playGame() {    
+    const playerChoice = prompt();
+    const computerChoice = getComputerChoice();
+    playRound(playerChoice, computerChoice);
 }
 
-game();
+function main() {
+    const btnRock = document.getElementById("btnRock");
+    const btnPaper = document.getElementById("btnPaper");
+    const btnScissors = document.getElementById("btnScissors");
+    
+    btnRock.addEventListener('click', () => playRound("Rock", getComputerChoice()));
+    btnPaper.addEventListener('click', () => playRound("Paper", getComputerChoice()));
+    btnScissors.addEventListener('click', () => playRound("Scissors", getComputerChoice()));
+}
+
+main();
