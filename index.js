@@ -1,3 +1,12 @@
+const btnRock = document.getElementById("btnRock");
+const btnPaper = document.getElementById("btnPaper");
+const btnScissors = document.getElementById("btnScissors");
+const results = document.getElementById("results");
+
+btnRock.addEventListener('click', () => playRound("Rock", getComputerChoice()));
+btnPaper.addEventListener('click', () => playRound("Paper", getComputerChoice()));
+btnScissors.addEventListener('click', () => playRound("Scissors", getComputerChoice()));
+
 function getComputerChoice() {
     const rng = Math.ceil(Math.random() * 3);
     switch (rng) {
@@ -13,19 +22,19 @@ function getComputerChoice() {
 }
 
 function printWinner(player, computer) {
-    console.log(`You win! ${player} beats ${computer}!`);
+    results.innerText = `You win! ${player} beats ${computer}!`;
 }
 
 function printLoser(player, computer) {
-    console.log(`You lose! ${computer} beats ${player}!`);
+    results.innerText = `You lose! ${computer} beats ${player}!`;
 }
 
 function printTie(player, computer) {
-    console.log(`You tie! Both chose ${computer}!`);
+    results.innerText = `You tie! Both chose ${computer}!`;
 }
 
 function printInvalid(player) {
-    console.log(`Invalid entry: "${player}". Please enter another value!`);
+    results.innerText = `Invalid entry: "${player}". Please enter another value!`;
 }
 
 function playRound(player, computer) {
@@ -89,21 +98,3 @@ function playRound(player, computer) {
             break;
     }
 }
-
-function playGame() {    
-    const playerChoice = prompt();
-    const computerChoice = getComputerChoice();
-    playRound(playerChoice, computerChoice);
-}
-
-function main() {
-    const btnRock = document.getElementById("btnRock");
-    const btnPaper = document.getElementById("btnPaper");
-    const btnScissors = document.getElementById("btnScissors");
-    
-    btnRock.addEventListener('click', () => playRound("Rock", getComputerChoice()));
-    btnPaper.addEventListener('click', () => playRound("Paper", getComputerChoice()));
-    btnScissors.addEventListener('click', () => playRound("Scissors", getComputerChoice()));
-}
-
-main();
